@@ -1,0 +1,12 @@
+branches:
+  only: src
+language: python
+python: '3.6'
+sudo: false
+env:
+  global:
+  - secure: O9hWgF2x5zNTK89JxQWYtseQGAp0isX8TxRL9N+dvp9sJLy7rE8wu5cpJD47AQVcdqaTe6xkVdN9QkdwBBHRYN42JcZ8C1sPNTMtyPSL9Hud5Duwh62PxE0cF13Y0okLqE/YaCXQvG1q/HTpWU3jT8+GNIVXHpA8hJ6r7jjooUw=
+cache: pip
+install: make install
+script: make build
+after_success: 'if [ "$TRAVIS_PULL_REQUEST" != "false" ]; then make diff; else make deploy; fi'
